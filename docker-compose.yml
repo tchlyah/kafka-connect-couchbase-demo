@@ -107,3 +107,11 @@ services:
       CONNECT_LOG4J_LOGGERS: org.apache.zookeeper=ERROR,org.I0Itec.zkclient=ERROR,org.reflections=ERROR
     volumes:
       - ./connect/data:/data
+
+  couchbase:
+    image: couchbase/server:7.0.2
+    hostname: couchbase
+    container_name: couchbase
+    ports:
+      - "8091-8094:8091-8094"
+      - "11210:11210"
