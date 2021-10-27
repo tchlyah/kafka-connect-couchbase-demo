@@ -109,7 +109,8 @@ services:
       - ./connect/data:/data
 
   couchbase:
-    image: couchbase/server:7.0.2
+    build:
+      context: couchbase
     hostname: couchbase
     container_name: couchbase
     ports:
