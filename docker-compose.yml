@@ -117,3 +117,21 @@ services:
     ports:
       - "8091-8094:8091-8094"
       - "11210:11210"
+
+  akhq:
+    image: tchiotludo/akhq
+    container_name: akhq
+    environment:
+      AKHQ_CONFIGURATION: |
+        akhq:
+          connections:
+            docker-kafka-server:
+              properties:
+                bootstrap.servers: "broker:29092"
+              schema-registry:
+                url: "http://schema-registry:8081"
+              connect:
+                - name: connect
+                  url: "http://connect:8083"
+    ports:
+      - "9090:8080"
