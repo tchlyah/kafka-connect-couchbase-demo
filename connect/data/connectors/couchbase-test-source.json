@@ -12,11 +12,18 @@
     "couchbase.password": "password",
     "key.converter": "org.apache.kafka.connect.storage.StringConverter",
     "couchbase.source.handler": "com.couchbase.connect.kafka.handler.source.RawJsonSourceHandler",
-    "value.converter": "org.apache.kafka.connect.converters.ByteArrayConverter",
+    "value.converter": "org.apache.kafka.connect.json.JsonConverter",
+    "value.converter.schema.enable": false,
     "couchbase.event.filter": "com.couchbase.connect.kafka.filter.AllPassFilter",
-    "couchbase.stream.from": "SAVED_OFFSET_OR_BEGINNING",
+    "couchbase.stream.from": "BEGINNING",
     "couchbase.compression": "ENABLED",
     "couchbase.flow.control.buffer": "16m",
-    "couchbase.persistence.polling.interval": "100ms"
+    "couchbase.persistence.polling.interval": "100ms",
+    "transforms": "deserializeJson,copyTypeToHeader",
+    "transforms.deserializeJson.type": "com.couchbase.connect.kafka.transform.DeserializeJson",
+    "transforms.copyTypeToHeader.type": "org.apache.kafka.connect.transforms.HeaderFrom$Value",
+    "transforms.copyTypeToHeader.fields": "type",
+    "transforms.copyTypeToHeader.headers": "type",
+    "transforms.copyTypeToHeader.operation": "copy"
   }
 }
